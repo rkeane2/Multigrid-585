@@ -55,7 +55,7 @@ end
 %interp operator on page 40 
 
 %%
-if probtype>2
+if probtype>2 %2d interpolation/restriction
     if restric ==0 %injection 
             n = n^2-2*n+2;
     n2 = (n2^2)-2*n2+2;
@@ -85,9 +85,9 @@ if probtype>2
         n = sqrt(length(u))+1;
         u = reshape(u,n-1,n-1);
         I = zeros(2*n+1,2*n+1);
-        if probtype ==3;
+        %if probtype >2
             u = [zeros(1,n+1);zeros(n-1,1),u,zeros(n-1,1);zeros(1,n+1)];
-        end
+        %end
         for i=1:n
             for j=1:n
                 I(2*i-1,2*j-1) = u(i,j);

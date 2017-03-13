@@ -28,6 +28,7 @@ if probtype ==3
     h = 1/n;
     x = (0:n)*h; 
     [X,Y] = meshgrid(x,x); 
+    x = [X,Y];
     cd(tar_dir); 
     rhs_fun = chebfun2(@(x,y)x.^2+y.^2,[0 1 0 1]);
     A = chebop2(@(u) diff(u,2,1)+diff(u,2,2),[0 1 0 1]);
@@ -36,4 +37,31 @@ if probtype ==3
     u = u_cheb(X,Y); 
     cd(parent_dir);
 end
+
+if probtype ==4
+    tar_dir = 'C:\Users\ronan\Documents\matlab code\mathematica code\UW etc\WI 2017\585 hw4 hw5 hw6\chebfun-master\chebfun-master';
+    parent_dir = 'C:\Users\ronan\Documents\matlab code\mathematica code\UW etc\WI 2017\585 hw4 hw5 hw6\585 final';
+    h = 1/n;
+    x = (0:n)*h; 
+    [X,Y] = meshgrid(x,x); 
+    x = [X,Y];
+    cd(tar_dir); 
+    rhs_fun = chebfun2(@(x,y)120*pi*x.*(sin(pi*(x+1).^3))-60*pi*y.*cos(pi^3.*(4*y-2).^2),[0 1 0 1]);
+    A = chebop2(@(u) diff(u,2,1)+diff(u,2,2),[0 1 0 1]);
+    A.lbc = 2; A.rbc = 2; A.ubc = 2; A.dbc = 2;
+    u_cheb = A\rhs_fun;
+    u = u_cheb(X,Y); 
+    cd(parent_dir);
+end
+    
+
+if probtype ==5
+    h = 1/n;
+    x = (0:n)*h; 
+    [X,Y] = meshgrid(x,x);
+    exact_fun = @(x,y) (x-x.^2).*(y-y.^2);
+    x = [X,Y];
+    u = exact_fun(X,Y);
+end
+    
     

@@ -57,18 +57,12 @@ Vgrid(levels+1).f = [];
 Vgrid(1).f = rhs(n,probtype,v); 
 for i =1:levels+1
 Vgrid(i).n = n/(2^(i-1));
-if probtype <5
 Vgrid(i).A = matrix(Vgrid(i).n,probtype);
-continue
-end
-if probtype ==5
-    if i==1
-        Vgrid(i).v = v;
-    end
+if probtype ==4
     Vgrid(i).A = JM(Vgrid(i).v);
-    Vgrid(i+1).v = interpop(Vgrid(i).n,(Vgrid(i).n)/2,resttype,probtype,Vgrid(i).v);
+    Vgrid(i+1).v = interpop(Vgrid(i).n,(Vgrid(i).n)/2,resttype,probtype,v);
 end
-end
+
 if probtype ==1
     l_b = 1/2;
     r_b = -1/2;
@@ -100,7 +94,7 @@ for k=1:iters
 Vgrid(1).u = WJac(Vgrid(1).A,Vgrid(1).f,v,w,mu1,relaxtype); %relax initial guess mu1 times
 Vgrid(2).f = Vgrid(1).f-Vgrid(1).A*Vgrid(1).u; %compute residual
 
-%h = 1/n; norm(Vgrid(2).f)*sqrt(h^2) %print out residuals at each grid
+%norm(Vgrid(2).f)*sqrt(h) %print out residuals at each grid
 
 for i = 1:levels
 %     if probtype<3
@@ -123,7 +117,7 @@ end
 Vgrid(i+1).u = WJac(Vgrid(i+1).A,Vgrid(i+1).f,init_guess,w,mu1,relaxtype); %compute error = "sol"
 Vgrid(i+2).f = Vgrid(i+1).f-Vgrid(i+1).A*Vgrid(i+1).u; %compute new residual
 
-%norm(Vgrid(i+2).f)*sqrt(h^2) %print out residuals at each grid
+%norm(Vgrid(i+2).f)*sqrt(h) %print out residuals at each grid
 
 end
 
@@ -152,11 +146,6 @@ if probtype ==3
     u = v;
     u = reshape(u,(n-1),(n-1)); 
     u = [ones(1,n+1);ones(n-1,1),u,ones(n-1,1);ones(1,n+1)];
-end
-if probtype ==4
-    u = v;
-    u = reshape(u,(n-1),(n-1)); 
-    u = [2*ones(1,n+1);2*ones(n-1,1),u,2*ones(n-1,1);2*ones(1,n),2];
 end
 end
 

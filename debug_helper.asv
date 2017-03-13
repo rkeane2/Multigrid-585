@@ -26,10 +26,8 @@ plot([u_test,u_test2(2:end-1)])*sqrt(1/n);
 
 %% nonlinear debug
 
-%testres = exact(64,4);
-%testres = (testres(2:end-1,2:end-1));
-%testres = zeros(63^2,1);
+testres = exact(64,4);
+testres = (testres(2:end-1,2:end-1));
 testres = testres(:);
 testrhs = rhs(64,4,testres);
-testjac = JM(testres);
-testres = testres-testjac\testrhs;
+testjac = JM();

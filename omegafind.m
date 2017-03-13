@@ -12,7 +12,7 @@ b = rhs(n,probtype);
 if probtype == 0 || probtype ==1 || probtype ==2
 v = zeros(n-1,1); 
 end
-if probtype ==3
+if probtype ==3 || probtype ==4
     v = zeros((n-1)^2,1); 
 end
 if relaxtype ==0
