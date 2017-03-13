@@ -38,7 +38,7 @@ n =256;
  
  n =64;
 
- n =64;
+ n =128;
 
 %v = linspace(1,3,n-1)';
  probtype = 4;

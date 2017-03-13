@@ -43,13 +43,13 @@ figure(1)
 n =64;
 
 %v = linspace(1,3,n-1)';
- probtype = 4;
+ probtype = 5;
  levels = 2;
  w = 1.3; 
  relaxtype = 1;
  resttype = 1;
- iters = 10;
- v = 2*ones((n-1)^2,1); 
+ iters = 5;
+ v = 1*ones((n-1)^2,1); 
 
 subplot(3,1,2);
 
@@ -59,21 +59,21 @@ surf(x(1:n+1,1:n+1),x(1:n+1,n+2:2*n+2),u_exact); shading interp;
 
  subplot(3,1,1);
 
-[u] = Vcycle(n,levels,v,probtype,5,5,w,relaxtype,resttype,iters,1);
+[u] = Vcycle(n,levels,v,probtype,3,3,w,relaxtype,resttype,iters,1);
 surf(x(1:n+1,1:n+1),x(1:n+1,n+2:2*n+2),u); shading interp; 
 
 h = 1/n;
 error_l2 = norm(u(:)-u_exact(:))*h
 error_inf = norm(u(:)-u_exact(:),inf)
-% subplot(3,1,3); 
-% error = u-u_exact;
-% surf(x(1:n+1,1:n+1),x(1:n+1,n+2:2*n+2),error); shading interp;
+subplot(3,1,3); 
+error = u-u_exact;
+surf(x(1:n+1,1:n+1),x(1:n+1,n+2:2*n+2),error); shading interp;
 
 %% test nonlinear problem
 
 figure(1)
 n =64;
- probtype = 5;
+ probtype = 6;
  levels = 4;
  w = 1.1; 
  relaxtype = 1;

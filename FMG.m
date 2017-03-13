@@ -44,6 +44,10 @@ if probtype ==4
     u = reshape(u,(n-1),(n-1)); 
     u = [2*ones(1,n+1);2*ones(n-1,1),u,2*ones(n-1,1);2*ones(1,n+1)];
 end
+if probtype ==5
+    u = reshape(u,(n-1),(n-1)); 
+    u = [ones(1,n+1);ones(n-1,1),u,ones(n-1,1);ones(1,n+1)];
+end
 end
 
 

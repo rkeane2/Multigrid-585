@@ -57,11 +57,11 @@ Vgrid(levels+1).f = [];
 Vgrid(1).f = rhs(n,probtype,v); 
 for i =1:levels+1
 Vgrid(i).n = n/(2^(i-1));
-if probtype <5
+if probtype <6
 Vgrid(i).A = matrix(Vgrid(i).n,probtype);
 continue
 end
-if probtype ==5
+if probtype ==6
     if i==1
         Vgrid(i).v = v;
     end
@@ -156,7 +156,12 @@ end
 if probtype ==4
     u = v;
     u = reshape(u,(n-1),(n-1)); 
-    u = [2*ones(1,n+1);2*ones(n-1,1),u,2*ones(n-1,1);2*ones(1,n),2];
+    u = [2*ones(1,n+1);2*ones(n-1,1),u,2*ones(n-1,1);2*ones(1,n+1)];
+end
+if probtype ==5
+    u = v; h = 1/n;
+    u = reshape(u,(n-1),(n-1)); 
+    u = [1.*ones(1,n+1);1*ones(n-1,1),u,1*ones(n-1,1);1.*ones(1,n+1)];
 end
 end
 

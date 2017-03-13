@@ -39,11 +39,11 @@ end
 
 if probtype ==3
    h = 1/n;
-   rhs_fun = @(x,y) x.^2+y.^2;
+   rhs_fun = @(x,y) (x-.5).^2+y.^2;
 f = zeros((n-1)^2,1); 
 for k=1:(n-1)^2
     count = 0;
-    [i,j] = ind2sub([n-1,n-1],k);
+    [j,i] = ind2sub([n-1,n-1],k);
     x=i*h ;
     y = j*h;
     f(k) = rhs_fun(x,y); 
@@ -64,13 +64,17 @@ for k=1:(n-1)^2
 end
 end
 
+
+
+
+
 if probtype ==4 %experiment with your favorite function :) 
    h = 1/n;
    rhs_fun = @(x,y) 120*pi*x.*(sin(pi*(x+1).^3))-60*pi*y.*cos(pi^3.*(4*y-2).^2);
 %rhs_fun = @(x,y) 0;
    f = zeros((n-1)^2,1); 
 for k=1:(n-1)^2
-    [i,j] = ind2sub([n-1,n-1],k);
+    [j,i] = ind2sub([n-1,n-1],k);
     x=i*h ;
     y = j*h;
     f(k) = rhs_fun(x,y); 
@@ -90,6 +94,31 @@ end
 end
 
 if probtype ==5
+   h = 1/n;
+   rhs_fun = @(x,y) (x-.5).^2+1000*sin(48*pi*y.^2);
+f = zeros((n-1)^2,1); 
+for k=1:(n-1)^2
+    count = 0;
+    [j,i] = ind2sub([n-1,n-1],k);
+    x=i*h ;
+    y = j*h;
+    f(k) = rhs_fun(x,y); 
+    if i == 1 %top
+        f(k) = f(k)-(1/h^2);       
+    end
+    if j == 1 %left
+        f(k) = f(k)-(1/h^2);
+    end
+    if i == n-1 %bottom
+        f(k) = f(k)-(1/h^2);       
+    end
+    if j == n-1 %right
+        f(k) = f(k)-(1/h^2);
+    end
+end
+end
+
+if probtype ==6
     gam = 10; %can change
     h = 1/n;
     x = (1:n-1)*h;
