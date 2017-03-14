@@ -33,3 +33,8 @@ testres = testres(:);
 testrhs = rhs(64,4,testres);
 testjac = JM(testres);
 testres = testres-testjac\testrhs;
+
+%% nonlinear debug 2
+
+u= u(2:end-1,2:end-1);
+rhs(64,6,u(:))

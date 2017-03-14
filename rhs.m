@@ -118,8 +118,8 @@ for k=1:(n-1)^2
 end
 end
 
-if probtype ==6 %nonlinear residual 
-    gam = 100; %can change
+if probtype ==6
+    gam = 10; %can change
     h = 1/n;
     x = (1:n-1)*h;
     [X,Y] = meshgrid(x,x); 
@@ -137,7 +137,7 @@ if probtype ==6 %nonlinear residual
         end
     end
     A = A(2:end-1,2:end-1); A = A(:);
-    f = -A; %f = f-A;
+    f = f-A; %f = f-A;
 end
 
 

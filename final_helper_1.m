@@ -6,7 +6,7 @@ n =256;
 %v = linspace(1,3,n-1)';
  probtype = 2;
  levels =3;
- w = 1.1; 
+ w = 1.2; 
  relaxtype = 1;
  resttype = 1;
  iters = 1;
@@ -30,7 +30,7 @@ plot(x,u,'r-'); title('computed and true solutions');
 
 h = 1/n;
 error_l2 = norm(u-u_exact)*sqrt(h)
-residual = norm(matrix(n,probtype)*u(2:end-1)-rhs(n,probtype))*sqrt(h)
+residual = norm(matrix(n,probtype)*u(2:end-1)-rhs(n,probtype))*sqrt(h);
 %error_inf = norm(u-u_exact,inf)
 
 subplot(2,1,2);
@@ -43,12 +43,12 @@ figure(1)
 n =64;
 
 %v = linspace(1,3,n-1)';
- probtype = 5;
- levels = 3;
+ probtype = 3;
+ levels = 2;
  w = 1.3; 
  relaxtype = 1;
  resttype = 1;
- iters = 10;
+ iters = 5;
  v = 1*ones((n-1)^2,1); 
 
 subplot(3,1,2);
@@ -72,15 +72,15 @@ surf(x(1:n+1,1:n+1),x(1:n+1,n+2:2*n+2),error); shading interp;
 %% test nonlinear problem
 
 figure(1)
-n =64;
+n =128; %can show how this changes the error
  probtype = 6;
- levels = 3;
- w = 1.1; 
- relaxtype = 1;
+ levels = 2;
+ w = 1; 
+ relaxtype = 0;
  resttype = 1;
- iters = 5;
- v = zeros((n-1)^2,1); 
-%  v = testres;
+ iters = 10;
+ %v = ones((n-1)^2,1); %won't converge with this guess
+v = zeros((n-1)^2,1);
 
 subplot(3,1,2);
 
