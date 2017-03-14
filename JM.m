@@ -1,5 +1,5 @@
 function Jmat = JM(v)
-gam = 10; %can change but remember to change in rhs as well
+gam = 100; %can change but remember to change in rhs as well
 m = length(v); %m = (n-1)^2
 Jmat = zeros(m,m); 
 n = sqrt(m); %n = n-1

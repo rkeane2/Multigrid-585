@@ -24,8 +24,8 @@ end
 
 if probtype ==3
 % %     %chebfun way
-% %     tar_dir = 'C:\Users\Pc\Documents\MATLAB\chebfun-master';
-% %     parent_dir = 'C:\Users\Pc\Documents\MATLAB\Multigrid-585-master';
+% %     tar_dir = 'C:\Users\ronan\Documents\matlab code\mathematica code\UW etc\WI 2017\585 hw4 hw5 hw6\chebfun-master\chebfun-master';
+% %     parent_dir = 'C:\Users\ronan\Documents\matlab code\mathematica code\UW etc\WI 2017\585 hw4 hw5 hw6\585 final';
     h = 1/n;
     x = (0:n)*h; 
     [X,Y] = meshgrid(x,x); 
@@ -38,6 +38,7 @@ if probtype ==3
 % %     u = u_cheb(X,Y); 
 % %     cd(parent_dir);
     
+%matlab direct solve
     test1 = rhs(n,3);
 test2 = matrix(n,3);
 u = test2\test1; u = reshape(u,n-1,n-1);
@@ -46,8 +47,8 @@ end
 
 if probtype ==4
 % %     %chebfun way
-% %     tar_dir = 'C:\Users\Pc\Documents\MATLAB\chebfun-master';
-% %     parent_dir = 'C:\Users\Pc\Documents\MATLAB\Multigrid-585-master';
+% %     tar_dir = 'C:\Users\ronan\Documents\matlab code\mathematica code\UW etc\WI 2017\585 hw4 hw5 hw6\chebfun-master\chebfun-master';
+% %     parent_dir = 'C:\Users\ronan\Documents\matlab code\mathematica code\UW etc\WI 2017\585 hw4 hw5 hw6\585 final';
     h = 1/n;
     x = (0:n)*h; 
     [X,Y] = meshgrid(x,x); 
@@ -60,6 +61,7 @@ if probtype ==4
 % %     u = u_cheb(X,Y); 
 % %     cd(parent_dir);
 
+%matlab direct solve
 test1 = rhs(n,4);
 test2 = matrix(n,4);
 u = test2\test1; u = reshape(u,n-1,n-1);
@@ -70,20 +72,21 @@ end
 
 if probtype ==5
     %chebfun way
-% %     tar_dir = 'C:\Users\Pc\Documents\MATLAB\chebfun-master';
-% %     parent_dir = 'C:\Users\Pc\Documents\MATLAB\Multigrid-585-master';
+% %     tar_dir = 'C:\Users\ronan\Documents\matlab code\mathematica code\UW etc\WI 2017\585 hw4 hw5 hw6\chebfun-master\chebfun-master';
+% %     parent_dir = 'C:\Users\ronan\Documents\matlab code\mathematica code\UW etc\WI 2017\585 hw4 hw5 hw6\585 final';
     h = 1/n;
     x = (0:n)*h; 
     [X,Y] = meshgrid(x,x); 
     x = [X,Y];
 % %     cd(tar_dir); 
-% %     rhs_fun = chebfun2(@(x,y)(x-.5).^2+exp(3*sin(48*pi*y.^2)),[0 1 0 1]);
+% %     rhs_fun = chebfun2(@(x,y)(x-.5).^2+1000*sin(48*pi*y.^2),[0 1 0 1]);
 % %     A = chebop2(@(u) diff(u,2,1)+diff(u,2,2),[0 1 0 1]);
 % %     A.lbc = 1; A.rbc = 1; A.ubc = 1; A.dbc = 1;
 % %     u_cheb = A\rhs_fun;
 % %     u = u_cheb(X,Y); 
 % %     cd(parent_dir);
 
+%matlab direct solve
 test1 = rhs(n,5);
 test2 = matrix(n,5);
 u = test2\test1; u = reshape(u,n-1,n-1);

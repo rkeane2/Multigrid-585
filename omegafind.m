@@ -4,6 +4,7 @@ function [opt_w] = omegafind(n,probtype,relaxtype)
 % relaxtype = 1 - full weighting, 0 - injection  
 % n = 264; %number of grid points 
 
+%only for linear problems (0-5)
 %make matrix M, look at eigenvalues. 
 
 A = matrix(n,probtype); 
@@ -12,7 +13,7 @@ b = rhs(n,probtype);
 if probtype == 0 || probtype ==1 || probtype ==2
 v = zeros(n-1,1); 
 end
-if probtype ==3 || probtype ==4
+if probtype ==3 || probtype ==4 || probtype ==5
     v = zeros((n-1)^2,1); 
 end
 if relaxtype ==0

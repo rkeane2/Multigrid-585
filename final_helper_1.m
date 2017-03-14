@@ -44,11 +44,11 @@ n =64;
 
 %v = linspace(1,3,n-1)';
  probtype = 5;
- levels = 2;
+ levels = 3;
  w = 1.3; 
  relaxtype = 1;
  resttype = 1;
- iters = 5;
+ iters = 10;
  v = 1*ones((n-1)^2,1); 
 
 subplot(3,1,2);
@@ -74,11 +74,11 @@ surf(x(1:n+1,1:n+1),x(1:n+1,n+2:2*n+2),error); shading interp;
 figure(1)
 n =64;
  probtype = 6;
- levels = 4;
+ levels = 3;
  w = 1.1; 
  relaxtype = 1;
  resttype = 1;
- iters = 7;
+ iters = 5;
  v = zeros((n-1)^2,1); 
 %  v = testres;
 
