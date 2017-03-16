@@ -2,7 +2,8 @@ function f = rhs(n,probtype,v)
 %n = number of intervals
 %probtype = model problem
 %f = vector s.t. Au = f
-%v = current iter for probtype =4 
+%v = current iter for probtype = 6
+%if probtype =6 it returns the current residual = f-Av
 
 if probtype ==1
     h = 1/n;

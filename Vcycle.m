@@ -11,6 +11,8 @@ function [u] = Vcycle(n,levels,v,probtype,mu1,mu2,w,relaxtype,resttype,iters,out
 %probtype is the type of problem to solve
 %probtype = 0: u'' = x^2-(5/4)x+3/8; u(0) = 1/2; u(1) = 1;
 %probtype = 1: u'' = 4*pi^2*sin(2*pi*x); u(0) = 1/2; u(1) = 1/2;
+%probtype = 2: 1-d 
+%probtype 3-5: 2-d poisson 
 
 %mu1  %number of times to relax on way down
 %mu2  %number of times to relax on way up
@@ -25,8 +27,16 @@ function [u] = Vcycle(n,levels,v,probtype,mu1,mu2,w,relaxtype,resttype,iters,out
 %resttype = 0: injection 
 %resttype = 1: full weighting
 
-%outtype = 0; output for FMG
-%outtype = 1; output for plotting
+%iters: number of V cycles to run. 1-5 is typically sufficient. 
+
+%outtype = 0; output for FMG/NMG
+%outtype = 1; output for plotting (reshapes solution, adds boundary)
+
+%note: there is commented code to print out the residual at each 
+%grid. The residual should always decrease until it reaches the machine
+%precision, at which point it will typically oscilate. I do not include a
+%tolerance input because different problems will have different errors. But
+%the residual should ALWAYS steadily decrease to near machine precision 
 
 
 if isempty(v)
@@ -61,7 +71,7 @@ if probtype <6
 Vgrid(i).A = matrix(Vgrid(i).n,probtype);
 continue
 end
-if probtype ==6
+if probtype ==6 %nonlinear problem 
     if i==1
         Vgrid(i).v = v;
     end
@@ -100,6 +110,7 @@ for k=1:iters
 Vgrid(1).u = WJac(Vgrid(1).A,Vgrid(1).f,v,w,mu1,relaxtype); %relax initial guess mu1 times
 Vgrid(2).f = Vgrid(1).f-Vgrid(1).A*Vgrid(1).u; %compute residual
 
+%print 
 %h = 1/n; norm(Vgrid(2).f)*sqrt(h^2) %print out residuals at each grid
 
 for i = 1:levels

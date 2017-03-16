@@ -1,5 +1,5 @@
 function u = NMG(n,levels,v,mu1,mu2,w,relaxtype,resttype,iters)
-
+%Newton multi grid
 for i = 1:iters
      %v = v+JM(v)\rhs(n,4,v);
     cor = Vcycle(n,levels,v,6,mu1,mu2,w,relaxtype,resttype,1,0);

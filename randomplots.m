@@ -3,7 +3,7 @@ probtype = 2;
 relaxtype =1;
 n = 264; 
 h = 1/n;
-iters = 20; 
+iters = 10; 
 A = matrix(n,probtype); 
 f = rhs(n,probtype); 
 u_true = exact(n,probtype); u_true = u_true(2:end-1); 
@@ -20,6 +20,6 @@ for i = 1:iters
 end
 end
 figure(2);
-set(gcf,'DefaultLineLineWidth',2);
+set(gcf,'DefaultLineLineWidth',2); set(0,'DefaultAxesFontSize',11);
 plot(ploterror); legend(['omega = ',num2str(1)],['omega = ',num2str(1.2)],['omega = ',num2str(1.6)],['omega = ',num2str(1.95)]);
 xlabel('iteration'); ylabel('error in l2 norm');

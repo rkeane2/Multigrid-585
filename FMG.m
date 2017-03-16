@@ -1,5 +1,6 @@
 function [u] = FMG(n,levels,probtype,mu1,mu2,w,relaxtype,resttype,iterV,outtype)
-%note: only for probs 0,1,2,3,4
+%note: only for probs 0,1,2,3,4,5
+%Full multigrid
 Fcycle(1).f = rhs(n,probtype,[]); 
 Fcycle(1).n = n;
 Fcycle(levels+1).f = [];

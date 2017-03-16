@@ -23,34 +23,35 @@ if relaxtype ==1
 end
  
 %% method 1: look at eigenvalues of matrix 'M'. Not as good with multigrid. use method 2 for better multigrid
-eigholder = zeros(length(A),length(omega));
-for i = 1:length(omega)
-    w = omega(i); 
-[v,M] = WJac(A,b,[],w,0,relaxtype);
-evals = eig(M); 
-if relaxtype ==0 
-evals = sort(abs(evals)); 
-end
-evals;
-eigholder(:,i) = evals; 
-end
-%if relaxtype==0
-eigholder = eigholder(1:round(end/2),:); 
-%end
-[~,w_index] = min(max(eigholder));
-opt_w = omega(w_index); 
-
-%note the optimal omega isn't consistent with numerical experiments
-
-%% method 2: 
-% testholder = zeros(length(omega),1); 
+% eigholder = zeros(length(A),length(omega));
 % for i = 1:length(omega)
-%     w = omega(i);
-%     test1 = WJac(A,b,v,w,5,relaxtype);
-%     testholder(i) = norm(b-A*test1); 
+%     w = omega(i); 
+% [v,M] = WJac(A,b,[],w,0,relaxtype);
+% evals = eig(M); 
+% if relaxtype ==0 
+% evals = sort(abs(evals)); 
 % end
-% 
-% [~,w_index] = min(testholder); 
+% evals;
+% eigholder(:,i) = evals; 
+% end
+% %if relaxtype==0
+% eigholder = eigholder(1:round(end/2),:); 
+% %end
+% [~,w_index] = min(max(eigholder));
 % opt_w = omega(w_index); 
+
+%note the optimal omega isn't consistent with numerical multigrid experiments. It is
+%optimal for solving the problem purely with Jacobi/Gauss-Seidel though. 
+
+%% method 2: works better for multigrid 
+testholder = zeros(length(omega),1); 
+for i = 1:length(omega)
+    w = omega(i);
+    test1 = WJac(A,b,v,w,5,relaxtype);
+    testholder(i) = norm(b-A*test1); 
+end
+
+[~,w_index] = min(testholder); 
+opt_w = omega(w_index); 
 
 
